@@ -3,7 +3,7 @@
     internal static class ChemicalElements
     {
         /// <summary>
-        /// Dictionary mapping from the chemical symbol to chemical name.
+        /// Maps from chemical symbol to chemical name.
         /// </summary>
         /// <remarks>
         /// The chemical symbol key is represented in upper-case.
@@ -22,7 +22,7 @@
         };
 
         /// <summary>
-        /// Gets the dictionary mapping from chemical symbol to chemical name.
+        /// Gets the mapping from chemical symbol to chemical name.
         /// </summary>
         /// <remarks>
         /// The chemical symbol key is represented in upper-case.
