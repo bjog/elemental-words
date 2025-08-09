@@ -1,5 +1,6 @@
 namespace ElementalWords.Tests
 {
+    [TestFixture]
     public class ElementalWordsTests
     {
         [Test]

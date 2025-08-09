@@ -1,167 +1,10 @@
 ﻿namespace ElementalWords.Tests;
 
+[TestFixture]
 public class ChemicalElementsTests
 {
-    private static IEnumerable<TestCaseData> ValidChemicalSymbolTestCases
-    {
-        get
-        {
-            yield return new TestCaseData(
-                [new string[] { "H" }, new string[] { "Hydrogen (H)" }]);
-
-            yield return new TestCaseData(
-                [new string[] { "Ac" }, new string[] { "Actinium (Ac)" }]);
-
-            yield return new TestCaseData(
-                [new string[] { "H", "Ac" }, new string[] { "Hydrogen (H)", "Actinium (Ac)"}]);
-        }
-    }
-
-    private static IEnumerable<TestCaseData> InvalidChemicalSymbolTestCases
-    {
-        get
-        {
-            yield return new TestCaseData(
-                [new string[] { "X" }]);
-
-            yield return new TestCaseData(
-                [new string[] { "123" }]);
-
-            yield return new TestCaseData(
-                [new string[] { "H", "?" }]);
-        }
-    }
-
-    private static IEnumerable<TestCaseData> ChemicalSymbolCompletenessTestCases
-    {
-        get
-        {
-            string[] allChemicalSymbols = [
-                "H",
-                "He",
-                "Li",
-                "Be",
-                "B",
-                "C",
-                "N",
-                "O",
-                "F",
-                "Ne",
-                "Na",
-                "Mg",
-                "Al",
-                "Si",
-                "P",
-                "S",
-                "Cl",
-                "Ar",
-                "K",
-                "Ca",
-                "Sc",
-                "Ti",
-                "V",
-                "Cr",
-                "Mn",
-                "Fe",
-                "Co",
-                "Ni",
-                "Cu",
-                "Zn",
-                "Ga",
-                "Ge",
-                "As",
-                "Se",
-                "Br",
-                "Kr",
-                "Rb",
-                "Sr",
-                "Y",
-                "Zr",
-                "Nb",
-                "Mo",
-                "Tc",
-                "Ru",
-                "Rh",
-                "Pd",
-                "Ag",
-                "Cd",
-                "In",
-                "Sn",
-                "Sb",
-                "Te",
-                "I",
-                "Xe",
-                "Cs",
-                "Ba",
-                "La",
-                "Ce",
-                "Pr",
-                "Nd",
-                "Pm",
-                "Sm",
-                "Eu",
-                "Gd",
-                "Tb",
-                "Dy",
-                "Ho",
-                "Er",
-                "Tm",
-                "Yb",
-                "Lu",
-                "Hf",
-                "Ta",
-                "W",
-                "Re",
-                "Os",
-                "Ir",
-                "Pt",
-                "Au",
-                "Hg",
-                "Tl",
-                "Pb",
-                "Bi",
-                "Po",
-                "At",
-                "Rn",
-                "Fr",
-                "Ra",
-                "Ac",
-                "Th",
-                "Pa",
-                "U",
-                "Np",
-                "Pu",
-                "Am",
-                "Cm",
-                "Bk",
-                "Cf",
-                "Es",
-                "Fm",
-                "Md",
-                "No",
-                "Lr",
-                "Rf",
-                "Db",
-                "Sg",
-                "Bh",
-                "Hs",
-                "Mt",
-                "Ds",
-                "Rg",
-                "Cn",
-                "Nh",
-                "Fl",
-                "Mc",
-                "Lv",
-                "Ts",
-                "Og"];
-
-            yield return new TestCaseData([allChemicalSymbols]);
-        }
-    }
-
     [Test]
-    [TestCaseSource(nameof(ValidChemicalSymbolTestCases))]
+    [TestCaseSource(typeof(ChemicalElementsTestCases), nameof(ChemicalElementsTestCases.ValidChemicalSymbolTestCases))]
     public void ConvertingChemicalSymbols_WhenChemicalSymbolsValid_ReturnsElementalForms(
         IEnumerable<string> chemicalSymbols, 
         IEnumerable<string> expectedElementalForms)
@@ -174,7 +17,7 @@ public class ChemicalElementsTests
     }
 
     [Test]
-    [TestCaseSource(nameof(InvalidChemicalSymbolTestCases))]
+    [TestCaseSource(typeof(ChemicalElementsTestCases), nameof(ChemicalElementsTestCases.InvalidChemicalSymbolTestCases))]
     public void ConvertingChemicalSymbols_WhenAnyChemicalSymbolsInvalid_ThrowsArgumentException(
         IEnumerable<string> chemicalSymbols)
     {
@@ -242,7 +85,7 @@ public class ChemicalElementsTests
     }
 
     [Test]
-    [TestCaseSource(nameof(ChemicalSymbolCompletenessTestCases))]
+    [TestCaseSource(typeof(ChemicalElementsTestCases), nameof(ChemicalElementsTestCases.ChemicalSymbolCompletenessTestCases))]
     public void ChemicalElements_ContainsAllElements(IEnumerable<string> allChemicalSymbols)
     {
         // Arrange
