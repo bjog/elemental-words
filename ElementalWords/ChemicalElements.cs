@@ -4,9 +4,9 @@
     /// Helper class for mapping from chemical symbol forms to 'elemental forms' of chemical elements.
     /// </summary>
     /// <remarks>
-    /// The elemental form has the form <code>Chemical Name (Chemical Symbol)</code>
+    /// The elemental form has the form: <code>Chemical Name (Chemical Symbol)</code>
     /// </remarks>
-    internal static class ChemicalElements
+    public static class ChemicalElements
     {
         /// <summary>
         /// Maps from chemical symbol to its elemental form.
@@ -41,15 +41,33 @@
             }
         }
 
-        public static IEnumerable<string> ConvertFromChemicalSymbolToElementalForm(IEnumerable<string> chemicalSymbolForm)
+        /// <summary>
+        /// Converts the given chemical symbols to their elemental forms.
+        /// </summary>
+        /// <exception cref="ArgumentException">
+        /// Thrown when any of the given <paramref name="chemicalSymbolForms"/> is not a valid chemical symbol.
+        /// </exception>
+        public static IEnumerable<string> ConvertFromChemicalSymbolToElementalForm(IEnumerable<string> chemicalSymbolForms)
         {
-            return chemicalSymbolForm
-                .Select(ConvertFromChemicalSymbolToElementalForm);
+            return chemicalSymbolForms
+                .Select(ConvertFromChemicalSymbolToElementalForm)
+                .ToList();
         }
         
+        /// <summary>
+        /// Converts the given chemical symbol to its elemental form.
+        /// </summary>
+        /// <exception cref="ArgumentException">
+        /// Thrown when the given <paramref name="chemicalSymbolForm"/> is not a valid chemical symbol.
+        /// </exception>
         private static string ConvertFromChemicalSymbolToElementalForm(string chemicalSymbolForm)
         {
-            return ChemicalElements.ElementSymbolToName[chemicalSymbolForm];
+            if(elementsDictionary.TryGetValue(chemicalSymbolForm.ToUpper(), out var elementalForm))
+            {
+                return elementalForm;
+            }
+
+            throw new ArgumentException($"Unable to convert the chemical symbol '{chemicalSymbolForm}' as it was not a valid chemical symbol.");
         }
     }
 }
