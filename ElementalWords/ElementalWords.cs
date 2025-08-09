@@ -31,7 +31,7 @@
             {
                 foundChemicalSymbolForms.Add(
                     currentChemicalSymbolFormCandidate
-                    .Reverse()
+                    .Reverse() 
                     .ToList());
 
                 return;

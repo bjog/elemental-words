@@ -32,6 +32,134 @@ public class ChemicalElementsTests
         }
     }
 
+    private static IEnumerable<TestCaseData> ChemicalSymbolCompletenessTestCases
+    {
+        get
+        {
+            string[] allChemicalSymbols = [
+                "H",
+                "He",
+                "Li",
+                "Be",
+                "B",
+                "C",
+                "N",
+                "O",
+                "F",
+                "Ne",
+                "Na",
+                "Mg",
+                "Al",
+                "Si",
+                "P",
+                "S",
+                "Cl",
+                "Ar",
+                "K",
+                "Ca",
+                "Sc",
+                "Ti",
+                "V",
+                "Cr",
+                "Mn",
+                "Fe",
+                "Co",
+                "Ni",
+                "Cu",
+                "Zn",
+                "Ga",
+                "Ge",
+                "As",
+                "Se",
+                "Br",
+                "Kr",
+                "Rb",
+                "Sr",
+                "Y",
+                "Zr",
+                "Nb",
+                "Mo",
+                "Tc",
+                "Ru",
+                "Rh",
+                "Pd",
+                "Ag",
+                "Cd",
+                "In",
+                "Sn",
+                "Sb",
+                "Te",
+                "I",
+                "Xe",
+                "Cs",
+                "Ba",
+                "La",
+                "Ce",
+                "Pr",
+                "Nd",
+                "Pm",
+                "Sm",
+                "Eu",
+                "Gd",
+                "Tb",
+                "Dy",
+                "Ho",
+                "Er",
+                "Tm",
+                "Yb",
+                "Lu",
+                "Hf",
+                "Ta",
+                "W",
+                "Re",
+                "Os",
+                "Ir",
+                "Pt",
+                "Au",
+                "Hg",
+                "Tl",
+                "Pb",
+                "Bi",
+                "Po",
+                "At",
+                "Rn",
+                "Fr",
+                "Ra",
+                "Ac",
+                "Th",
+                "Pa",
+                "U",
+                "Np",
+                "Pu",
+                "Am",
+                "Cm",
+                "Bk",
+                "Cf",
+                "Es",
+                "Fm",
+                "Md",
+                "No",
+                "Lr",
+                "Rf",
+                "Db",
+                "Sg",
+                "Bh",
+                "Hs",
+                "Mt",
+                "Ds",
+                "Rg",
+                "Cn",
+                "Nh",
+                "Fl",
+                "Mc",
+                "Lv",
+                "Ts",
+                "Og"];
+
+            yield return new TestCaseData([allChemicalSymbols]);
+        }
+    }
+
     [Test]
     [TestCaseSource(nameof(ValidChemicalSymbolTestCases))]
     public void ConvertingChemicalSymbols_WhenChemicalSymbolsValid_ReturnsElementalForms(
@@ -111,5 +239,24 @@ public class ChemicalElementsTests
 
         // Assert
         Assert.That(result, Is.True);
+    }
+
+    [Test]
+    [TestCaseSource(nameof(ChemicalSymbolCompletenessTestCases))]
+    public void ChemicalElements_ContainsAllElements(IEnumerable<string> allChemicalSymbols)
+    {
+        // Arrange
+        const int NUMBER_OF_ELEMENTS = 118;
+
+        // Act + Assert
+        foreach (var symbol in allChemicalSymbols)
+        {
+            Assert.That(
+                ChemicalElements.IsValidChemicalSymbol(symbol),
+                Is.True);
+        }
+
+        Assert.That(allChemicalSymbols.Count(), Is.EqualTo(NUMBER_OF_ELEMENTS));
+        Assert.That(allChemicalSymbols.Distinct().Count(), Is.EqualTo(NUMBER_OF_ELEMENTS));
     }
 }
