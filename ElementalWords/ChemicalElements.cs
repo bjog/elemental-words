@@ -1,4 +1,6 @@
-﻿namespace ElementalWords
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ElementalWords
 {
     /// <summary>
     /// Helper class for mapping from chemical symbol forms to 'elemental forms' of chemical elements.
@@ -27,18 +29,9 @@
             {"C", "Carbon (C)"}
         };
 
-        /// <summary>
-        /// Gets the mapping from chemical symbol to chemical name.
-        /// </summary>
-        /// <remarks>
-        /// The chemical symbol key is represented in upper-case.
-        /// </remarks>
-        public static IReadOnlyDictionary<string, string> ElementSymbolToName
+        public static bool IsValidChemicalSymbol(string chemicalSymbol)
         {
-            get
-            {
-                return elementsDictionary;
-            }
+            return elementsDictionary.ContainsKey(chemicalSymbol.ToUpper());
         }
 
         /// <summary>

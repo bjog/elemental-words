@@ -57,10 +57,9 @@
             for (int substringLength = 1; substringLength <= substringMaxLength; substringLength++)
             {
                 var possibleChemicalSymbol = word
-                    .Substring(characterPosition, substringLength)
-                    .ToUpper();
+                    .Substring(characterPosition, substringLength);
 
-                if (ChemicalElements.ElementSymbolToName.TryGetValue(possibleChemicalSymbol, out _))
+                if (ChemicalElements.IsValidChemicalSymbol(possibleChemicalSymbol))
                 {
                     nextChemicalSymbolCandidates.Add(possibleChemicalSymbol);
                 }

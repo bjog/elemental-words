@@ -70,4 +70,46 @@ public class ChemicalElementsTests
         // Assert
         Assert.That(result, Is.EquivalentTo(expectedResult));
     }
+
+    [Test]
+    [TestCase("H")]
+    [TestCase("Ac")]
+    [TestCase("Xe")]
+    [TestCase("Co")]
+    public void IsValidChemicalSymbol_WhenValid_ReturnsTrue(string symbol)
+    {
+        // Act
+        var result = ChemicalElements.IsValidChemicalSymbol(symbol);
+
+        // Assert
+        Assert.That(result, Is.True);
+    }
+
+    [Test]
+    [TestCase("Hi")]
+    [TestCase("X")]
+    [TestCase("1")]
+    [TestCase("?")]
+    public void IsValidChemicalSymbol_WhenInvalid_ReturnsFalse(string symbol)
+    {
+        // Act
+        var result = ChemicalElements.IsValidChemicalSymbol(symbol);
+
+        // Assert
+        Assert.That(result, Is.False);
+    }
+
+    [Test]
+    [TestCase("Ac")]
+    [TestCase("AC")]
+    [TestCase("ac")]
+    [TestCase("aC")]
+    public void IsValidChemicalSymbol_IsCaseInsensitive(string symbol)
+    {
+        // Act
+        var result = ChemicalElements.IsValidChemicalSymbol(symbol);
+
+        // Assert
+        Assert.That(result, Is.True);
+    }
 }
