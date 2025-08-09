@@ -1,5 +1,8 @@
 namespace ElementalWords.Tests
 {
+    /// <summary>
+    /// Unit tests for <see cref="ElementalWords"/>.
+    /// </summary>
     [TestFixture]
     public class ElementalWordsTests
     {

@@ -1,8 +1,13 @@
 ﻿namespace ElementalWords.Tests;
 
+/// <summary>
+/// Unit tests for <see cref="ChemicalElements"/>.
+/// </summary>
 [TestFixture]
 public class ChemicalElementsTests
 {
+    private const int NUMBER_OF_ELEMENTS = 118;
+
     [Test]
     [TestCaseSource(typeof(ChemicalElementsTestCases), nameof(ChemicalElementsTestCases.ValidChemicalSymbolTestCases))]
     public void ConvertingChemicalSymbols_WhenChemicalSymbolsValid_ReturnsElementalForms(
@@ -88,9 +93,6 @@ public class ChemicalElementsTests
     [TestCaseSource(typeof(ChemicalElementsTestCases), nameof(ChemicalElementsTestCases.ChemicalSymbolCompletenessTestCases))]
     public void ChemicalElements_ContainsAllElements(IEnumerable<string> allChemicalSymbols)
     {
-        // Arrange
-        const int NUMBER_OF_ELEMENTS = 118;
-
         // Act + Assert
         foreach (var symbol in allChemicalSymbols)
         {

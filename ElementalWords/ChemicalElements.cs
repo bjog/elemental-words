@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ElementalWords
+﻿namespace ElementalWords
 {
     /// <summary>
     /// Helper class for mapping from chemical symbol forms to 'elemental forms' of chemical elements.
@@ -138,6 +136,18 @@ namespace ElementalWords
             { "OG", "Oganesson (Og)" }
         };
 
+        /// <summary>
+        /// Determines whether the given <paramref name="chemicalSymbol"/> is a valid chemical symbol.
+        /// </summary>
+        /// <param name="chemicalSymbol">
+        /// The input chemical symbol.
+        /// </param>
+        /// <returns>
+        /// <c>true</c> if the chemical symbol is valid, otherwise returns <c>false</c>.
+        /// </returns>
+        /// <remarks>
+        /// Case-insensitive.
+        /// </remarks>
         public static bool IsValidChemicalSymbol(string chemicalSymbol)
         {
             return elementsDictionary.ContainsKey(chemicalSymbol.ToUpper());
@@ -146,6 +156,12 @@ namespace ElementalWords
         /// <summary>
         /// Converts the given chemical symbols to their elemental forms.
         /// </summary>
+        /// <param name="chemicalSymbolForms">
+        /// The chemical symbol forms to convert.
+        /// </param>
+        /// <returns>
+        /// The converted elemental forms.
+        /// </returns>
         /// <exception cref="ArgumentException">
         /// Thrown when any of the given <paramref name="chemicalSymbolForms"/> is not a valid chemical symbol.
         /// </exception>
@@ -155,10 +171,16 @@ namespace ElementalWords
                 .Select(ConvertFromChemicalSymbolToElementalForm)
                 .ToList();
         }
-        
+
         /// <summary>
         /// Converts the given chemical symbol to its elemental form.
         /// </summary>
+        /// <param name="chemicalSymbolForm">
+        /// The chemical symbol form to convert.
+        /// </param>
+        /// <returns>
+        /// The converted elemental form.
+        /// </returns>
         /// <exception cref="ArgumentException">
         /// Thrown when the given <paramref name="chemicalSymbolForm"/> is not a valid chemical symbol.
         /// </exception>

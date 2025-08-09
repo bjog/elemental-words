@@ -1,5 +1,8 @@
 ﻿namespace ElementalWords.Tests
 {
+    /// <summary>
+    /// Unit test cases for <see cref="ChemicalElementsTests"/>.
+    /// </summary>
     internal static class ChemicalElementsTestCases
     {
         public static IEnumerable<TestCaseData> ValidChemicalSymbolTestCases
