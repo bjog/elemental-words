@@ -1,13 +1,19 @@
 ﻿namespace ElementalWords
 {
+    /// <summary>
+    /// Helper class for mapping from chemical symbol forms to 'elemental forms' of chemical elements.
+    /// </summary>
+    /// <remarks>
+    /// The elemental form has the form <code>Chemical Name (Chemical Symbol)</code>
+    /// </remarks>
     internal static class ChemicalElements
     {
         /// <summary>
-        /// Maps from chemical symbol to chemical name.
+        /// Maps from chemical symbol to its elemental form.
         /// </summary>
         /// <remarks>
         /// The chemical symbol key is represented in upper-case.
-        /// </remarks>
+        /// </remarks> 
         private static readonly IReadOnlyDictionary<string, string> elementsDictionary = new Dictionary<string, string>()
         {
             {"H", "Hydrogen (H)"},
@@ -33,6 +39,17 @@
             {
                 return elementsDictionary;
             }
+        }
+
+        public static IEnumerable<string> ConvertFromChemicalSymbolToElementalForm(IEnumerable<string> chemicalSymbolForm)
+        {
+            return chemicalSymbolForm
+                .Select(ConvertFromChemicalSymbolToElementalForm);
+        }
+        
+        private static string ConvertFromChemicalSymbolToElementalForm(string chemicalSymbolForm)
+        {
+            return ChemicalElements.ElementSymbolToName[chemicalSymbolForm];
         }
     }
 }

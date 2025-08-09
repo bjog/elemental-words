@@ -16,7 +16,7 @@
             FindChemicalSymbolForms(foundChemicalSymbolForms, word, 0, []);
 
             var foundElementalForms = foundChemicalSymbolForms
-                .Select(ConvertFromChemicalSymbolToElementalForm);
+                .Select(ChemicalElements.ConvertFromChemicalSymbolToElementalForm);
 
             return foundElementalForms;
         }
@@ -67,16 +67,6 @@
             }
 
             return nextChemicalSymbolCandidates;
-        }
-
-        private static IEnumerable<string> ConvertFromChemicalSymbolToElementalForm(IEnumerable<string> chemicalSymbolForm)
-        {
-            return chemicalSymbolForm
-                .Select(ConvertFromChemicalSymbolToElementalForm);
-        }
-
-        private static string ConvertFromChemicalSymbolToElementalForm(string chemicalSymbolForm) {
-            return ChemicalElements.ElementSymbolToName[chemicalSymbolForm];
         }
     }
 }
